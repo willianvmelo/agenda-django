@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Contato
 
 def index(request):
@@ -7,7 +7,9 @@ def index(request):
         'contatos':contatos
     })
 def ver_contato(request, contato_id):
-    contato = Contato.objects.get(id = contato_id) #Recupera dados do banco e armazena na variável
+    
+    # contato = Contato.objects.get(id = contato_id) --> Recupera dados do banco e armazena na variável
+    contato = get_object_or_404(Contato,id = contato_id) # Trata erros como 404 se o contato não existir.
     return render(request,'contatos/ver_contato.html',{
         'contato':contato
     })
