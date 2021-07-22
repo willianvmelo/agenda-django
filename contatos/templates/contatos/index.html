@@ -6,6 +6,7 @@
         <table class="table">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nome</th>
               <th>Sobrenome</th>
               <th>Telefone</th>
@@ -14,9 +15,9 @@
           </thead>
           <tbody>
             {% for contato in contatos%}
-            <!-- if mostrar for true exibe o contato na página -->  
-              {% if contato.mostrar%} 
+            
                 <tr>
+                  <td>{{contato.id}}</td>
                   <td>
                   <a href="{% url 'ver_contato' contato.id%}"> {{contato.nome}}</a>
                   </td>
@@ -24,7 +25,7 @@
                   <td>{{contato.telefone}}</td>
                   <td>{{contato.categoria}}</td>
                 </tr>
-              {%endif%}
+              
             {%endfor%}
           </tbody>
         </table>

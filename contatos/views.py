@@ -4,8 +4,12 @@ from django.http import Http404
 from .models import Contato
 
 def index(request):
-    contatos = Contato.objects.all() #Recupera dados do banco e armazena na variável
-    paginator = Paginator(contatos,2)
+    #### Recupera dados do banco e armazena na variável. Filtra e só exibe os contatos marcados como True ###
+    contatos = Contato.objects.order_by('-id').filter(
+        mostrar = True
+    ) 
+
+    paginator = Paginator(contatos,20)
     page = request.GET.get('p')
 
     contatos = paginator.get_page(page)
