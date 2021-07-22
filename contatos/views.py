@@ -1,8 +1,13 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 from .models import Contato
 
 def index(request):
     contatos = Contato.objects.all() #Recupera dados do banco e armazena na variável
+    paginator = Paginator(contatos,2)
+    page = request.GET.get('p')
+
+    contatos = paginator.get_page(page)
     return render(request,'contatos/index.html',{
         'contatos':contatos
     })
