@@ -29,6 +29,7 @@ def ver_contato(request, contato_id):
     })
 
 def busca(request):
+    # Obtém o termo pesquisado através da url.
     termo = request.GET.get('termo')
     contatos = Contato.objects.order_by('-id').filter(
         nome__icontains = termo,
