@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.http import Http404
 from .models import Contato
+from django.contrib import messages
 
 def index(request):
     #### Recupera dados do banco e armazena na variável. Filtra e só exibe os contatos marcados como True ###
@@ -40,6 +41,12 @@ def busca(request):
     page = request.GET.get('p')
 
     contatos = paginator.get_page(page)
+
+    # Mensagens
+
+    if termo is None or not termo:
+        messages.add_message(request, messages.ERROR,'O campo de pesquisa não pode ficar vazio.')
+        return redirect('index')
     return render(request,'contatos/busca.html',{
         'contatos':contatos
     })
