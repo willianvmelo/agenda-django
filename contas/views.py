@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 
 def login(request):
     return render(request, 'contas/login.html')
@@ -8,6 +9,7 @@ def logout(request):
 
 
 def cadastro(request):
+    print(request.POST)
     return render(request, 'contas/cadastro.html')
 
 def dashboard(request):
