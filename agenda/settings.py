@@ -149,3 +149,6 @@ MESSAGE_TAGS = {
     constants.ERROR : 'alert-danger',
     constants.DEBUG : 'alert-info',
 }
+
+# Definindo a url de login para funcionar o redirecionamento de @login_required
+LOGIN_URL = '/contas/login'
