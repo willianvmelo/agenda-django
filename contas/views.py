@@ -22,7 +22,8 @@ def login(request):
         messages.success(request, 'Logado com sucesso!')
         return redirect('dashboard')
 def logout(request):
-    return render(request, 'contas/logout.html')
+    auth.logout(request)
+    return redirect('index')
 
 
 def cadastro(request):
